@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:remainder_app_offline/controllers/remainder_controllers.dart';
 import 'package:remainder_app_offline/core/constants/app_colors.dart';
+import 'package:remainder_app_offline/core/helper/date_time_selection.dart';
 import 'package:remainder_app_offline/core/widgets/custom_buttom.dart';
 import 'package:remainder_app_offline/core/widgets/custom_text.dart';
 import 'package:remainder_app_offline/core/widgets/custom_textfield.dart';
@@ -18,7 +19,8 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _remainderTitleController = TextEditingController();
   TextEditingController _remainderDescriptionController =
       TextEditingController();
-  TextEditingController _remainderDateAndTimeController = TextEditingController();
+  TextEditingController _remainderDateAndTimeController =
+      TextEditingController();
 
   final RemainderControllers remainderController = Get.find();
   @override
@@ -80,21 +82,26 @@ class _HomePageState extends State<HomePage> {
                     title: 'Remainder Description',
                   ),
                   CustomTextField(
+                    readonly: true,
                     controller: _remainderDateAndTimeController,
                     hintText: 'Selete Date and Time',
                     title: 'Remainder Date and Time',
                     icon: Icons.calendar_month,
-                  ),
+                    ontap: () {
+                      selectDateTime( context) ;
+                    },
+           ),
                   CustomButton(
                     title: 'Submit',
                     ontap: () async {
                       await remainderController.addRemainders(
                         RemainderModel(
                           title: _remainderTitleController.text,
-                          description:  _remainderDescriptionController.text,
-                          datetime:  _remainderDateAndTimeController.text,
+                          description: _remainderDescriptionController.text,
+                          datetime: _remainderDateAndTimeController.text,
                         ),
                       );
+                      Get.back();
                     },
                   ),
                 ],
