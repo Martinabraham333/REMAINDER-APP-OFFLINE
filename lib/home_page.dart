@@ -28,8 +28,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: Column(),
-
-        floatingActionButton: FloatingActionButton(
+floatingActionButton: FloatingActionButton(
           onPressed: () {
             showAddRemainderBottomSheet();
             // showtest();
