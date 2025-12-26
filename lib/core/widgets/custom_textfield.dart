@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:remainder_app_offline/core/app_colors.dart';
+import 'package:remainder_app_offline/core/constants/app_colors.dart';
 import 'package:remainder_app_offline/core/widgets/custom_text.dart';
 
 class CustomTextField extends StatelessWidget {
