@@ -15,12 +15,12 @@ class RemainderControllers extends GetxController {
     await service.addRemainder(remainder);
     loadRemainders();
   }
-  Future<void> updateRemainders(int index, RemainderModel remainder) async {
-    await service.updateRemainders(index,remainder);
+  Future<void> updateRemainders(int key, RemainderModel remainder) async {
+    await service.updateRemainders(key,remainder);
     loadRemainders();
   }
-  Future<void> deleteRemainders(int index) async {
-    await service.deleteReminder(index);
+  Future<void> deleteRemainders(int key) async {
+    await service.deleteReminder(key);
     loadRemainders();
   }
 

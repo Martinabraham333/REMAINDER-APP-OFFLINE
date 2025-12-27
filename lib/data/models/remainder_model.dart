@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 part 'remainder_model.g.dart';
@@ -9,11 +10,13 @@ class RemainderModel extends HiveObject {
   @HiveField(1)
   final String description;
   @HiveField(2)
-  final String datetime;
+  final DateTime dateTime;
+
 
   RemainderModel({
     required this.title,
     required this.description,
-    required this.datetime,
+    required this.dateTime,
+
   });
 }

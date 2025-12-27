@@ -19,7 +19,7 @@ class RemainderModelAdapter extends TypeAdapter<RemainderModel> {
     return RemainderModel(
       title: fields[0] as String,
       description: fields[1] as String,
-      datetime: fields[2] as String,
+      dateTime: fields[2] as DateTime,
     );
   }
 
@@ -32,7 +32,7 @@ class RemainderModelAdapter extends TypeAdapter<RemainderModel> {
       ..writeByte(1)
       ..write(obj.description)
       ..writeByte(2)
-      ..write(obj.datetime);
+      ..write(obj.dateTime);
   }
 
   @override

@@ -16,15 +16,15 @@ class RemainderServices {
   }
 
   Future<void> updateRemainders(
-    int index,
+    int key,
     RemainderModel updatedRemainder,
   ) async {
     final box = Hive.box<RemainderModel>(boxName);
-    await box.putAt(index, updatedRemainder);
+    await box.put(key, updatedRemainder);
   }
 
-  Future<void> deleteReminder(int index) async {
+  Future<void> deleteReminder(int key) async {
     final box = Hive.box<RemainderModel>(boxName);
-    await box.deleteAt(index);
+    await box.delete(key);
   }
 }
