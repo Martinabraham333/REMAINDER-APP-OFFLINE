@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:remainder_app_offline/controllers/remainder_controllers.dart';
+import 'package:remainder_app_offline/core/services/notification_service.dart';
+import 'package:remainder_app_offline/features/remainder/controller/remainder_controllers.dart';
 import 'package:remainder_app_offline/core/constants/app_colors.dart';
 import 'package:remainder_app_offline/core/helper/date_time_convertor.dart';
 import 'package:remainder_app_offline/core/helper/date_time_selection.dart';
@@ -8,7 +9,7 @@ import 'package:remainder_app_offline/core/widgets/custom_buttom.dart';
 import 'package:remainder_app_offline/core/widgets/custom_icon.dart';
 import 'package:remainder_app_offline/core/widgets/custom_text.dart';
 import 'package:remainder_app_offline/core/widgets/custom_textfield.dart';
-import 'package:remainder_app_offline/data/models/remainder_model.dart';
+import 'package:remainder_app_offline/features/remainder/model/remainder_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -221,6 +222,23 @@ class _HomePageState extends State<HomePage> {
                           dateTime: _remaindeDateTime!,
                         ),
                       );
+
+                      await remainderController.addRemainders(
+  RemainderModel(
+    title: _remainderTitleController.text,
+    description: _remainderDescriptionController.text,
+    dateTime: _remaindeDateTime!,
+  ),
+);
+
+// 🔔 Schedule notification
+await NotificationService.scheduleNotification(
+  id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+  title: _remainderTitleController.text,
+  body: _remainderDescriptionController.text,
+  scheduledDate: _remaindeDateTime!,
+);
+
                       }
                    
                       Get.back();
